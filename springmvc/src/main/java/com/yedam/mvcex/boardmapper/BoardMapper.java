@@ -6,9 +6,15 @@ import com.yedam.mvcex.boardVO.BoardVO;
 
 public interface BoardMapper {
 
-	public List<BoardVO> getList();
+	BoardVO getBoard(BoardVO vo);
 	
-	public void insert(BoardVO vo);
+	public List<BoardVO> getBoardList(BoardVO vo);
+	
+	public void boardInsert(BoardVO vo);
+	
+	public void boardUpdate(BoardVO vo);
+	
+	void boardDelete(BoardVO vo);
 	
 	public void insertSelectKey(BoardVO vo);
 	

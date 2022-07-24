@@ -13,5 +13,6 @@
 	</bean>
 
 	<mybatis-spring:scan base-package="com.yedam.mvcex.emp"/>
+	<mybatis-spring:scan base-package="com.yedam.mvcex.boardmapper"/>
 
 </beans>
