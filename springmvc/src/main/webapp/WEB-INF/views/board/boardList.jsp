@@ -22,7 +22,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="b" items="${boardList}">
-				<tr onclick="location.href='boardUpdate?bno=${b.bno}'">
+				<tr onclick="location.href='get?bno=${b.bno}'">
 					<td>${b.bno}</td>
 					<td>${b.title}</td>
 					<td>${b.writer}</td>

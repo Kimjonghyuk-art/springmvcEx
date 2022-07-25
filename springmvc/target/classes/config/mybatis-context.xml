@@ -9,10 +9,13 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
-			value="classpath:mybatis-config.xml"></property>
+			value="classpath:mybatis-config.xml" />
+			<!-- mapper파일 등록 -->
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
 	</bean>
 
 	<mybatis-spring:scan base-package="com.yedam.mvcex.emp"/>
 	<mybatis-spring:scan base-package="com.yedam.mvcex.boardmapper"/>
+	<mybatis-spring:scan base-package="com.yedam.mvcex.todo"/>
 
 </beans>

@@ -7,6 +7,7 @@ import com.yedam.mvcex.boardVO.BoardVO;
 public interface BoardMapper {
 
 	BoardVO getBoard(BoardVO vo);
+	int BoardRead(Long bno);
 	
 	public List<BoardVO> getBoardList(BoardVO vo);
 	

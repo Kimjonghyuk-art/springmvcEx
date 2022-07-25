@@ -29,6 +29,7 @@
 	<typeAliases>
 		<!-- <typeAlias alias="emp" type="com.yedam.mvcex.emp.EmpVO" /> -->
 		<package name="com.yedam.mvcex.emp"/> <!-- EmpVO, empVO 둘다 가능-->
+		
 	</typeAliases>
 
 

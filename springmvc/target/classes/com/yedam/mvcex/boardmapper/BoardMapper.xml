@@ -7,6 +7,11 @@ SELECT * FROM tbl_board WHERE bno = #{bno}
 
 </select>
 
+<select id="BoardRead" resultType="com.yedam.mvcex.boardVO.BoardVO">
+
+SELECT * FROM tbl_board WHERE bno = #{bno}
+</select>
+
 <select id="getBoardList" resultType="com.yedam.mvcex.boardVO.BoardVO">
 	<![CDATA[
 		SELECT * FROM tbl_board WHERE bno > 0
