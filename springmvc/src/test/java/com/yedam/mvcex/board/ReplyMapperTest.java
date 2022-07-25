@@ -16,7 +16,7 @@ public class ReplyMapperTest {
 
 	@Autowired ReplyMapper mapper;
 	
-	@Test
+	
 	public void read() {
 		long bno = 1;
 		ReplyVO result = mapper.replyRead(bno);
@@ -28,8 +28,8 @@ public class ReplyMapperTest {
 	public void replyInsert() {
 		ReplyVO param = new ReplyVO();
 		param.setBno(1);
-		param.setReply("댓글테스트");
-		param.setReplyer("작성자테스트");
+		param.setReply("댓글테스트1");
+		param.setReplyer("작성자테스트1");
 		int result = mapper.replyInsert(param);
 		System.out.println(result);
 	}
