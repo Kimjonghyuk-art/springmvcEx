@@ -1,12 +1,8 @@
-package com.company.app.emp.mapper;
+package com.company.app.emp.service;
 
 import java.util.List;
-import java.util.Map;
 
-import com.company.app.emp.service.EmpReqVO;
-import com.company.app.emp.service.EmpVO;
-
-public interface EmpMapper {
+public interface EmpService {
 	EmpVO getEmp(EmpVO vo);
 
 	List<EmpVO> getEmpList(EmpReqVO vo);

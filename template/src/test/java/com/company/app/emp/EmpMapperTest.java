@@ -18,7 +18,7 @@ public class EmpMapperTest {
 	@Test
 	public void test() {
 		
-		System.out.println("Test 매퍼 테스트 >>>>>>>>"+mapper.test());
+//		System.out.println("Test 매퍼 테스트 >>>>>>>>"+mapper.test());
 		
 	};
 	

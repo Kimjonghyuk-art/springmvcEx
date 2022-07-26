@@ -2,10 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.company.app.emp.mapper.EmpMapper">
 
-<select id="test" resultType="string">
-SELECT sysdate FROM dual
+<select id="getEmp" parameterType="EmpVO"
+					resultType="empVO">				
+	SELECT *
+	FROM employees 
+	WHERE employee_id=#{employeeId}
+					
 </select>
 
+<select id="getEmpList" resultType="EmpVO" parameterType="empVO">
+SELECT *
+FROM employees
+	<where>
+	<if test ="employeeId != null and employeeId != ''">
+		and employee_id = #{employeeId}
+	</if>
+	<if test="jobId != null and jobId != ''">
+		and job_id = #{jobId}
+	</if>
+	
+	 <if test="depts != null and depts != ''">
+	 	and department_id IN 
+		<foreach collection="depts" item="item" open="(" separator="," close=")">#{item}</foreach>
+		
+	</if> 
+	
+	<if test="sdt != null">
+		and hire_date >= #{sdt}
+	</if>
+	<if test="edt != null">
+		  <![CDATA[ and hire_date <= #{edt} ]]>
+	</if>
+	</where>
+
+ORDER BY employee_id
+
+</select>
+
+<insert id="empInsert">
+	<selectKey keyProperty="employeeId" order="BEFORE" resultType="string">
+		SELECT NVL(MAX(employee_id),0)+1 FROM employees
+	</selectKey>
+INSERT
+INTO 
+employees(employee_id, first_name, last_name, email, hire_date, job_id)
+VALUES(#{employeeId}, #{firstName}, #{lastName}, #{email}, #{hireDate}, #{jobId})
+
+
+</insert>
+
+<update id="empUpdate" parameterType="empVO">
+UPDATE employees SET first_name = #{firstName}, last_name = #{lastName}, email = #{email},
+hire_date = #{hireDate}, job_id = #{jobId}
+WHERE employee_id = #{employeeId}
+
+</update>
+
+<delete id="empDelete">
+DELETE FROM employees WHERE employee_id = #{employeeId}
+
+</delete>
 
 
 </mapper>

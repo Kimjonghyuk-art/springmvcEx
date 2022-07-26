@@ -14,8 +14,8 @@
 		<property name="mapperLocations" value="classpath*:com/company/app/**/mapper/*.xml" />
 	</bean>
 
-	<!-- <mybatis-spring:scan base-package="com.yedam.mvcex.emp"/> -->
+	
 	<!-- mapper 인터페이스 -> 상속받고 구현클래스 -->
-	<mybatis-spring:scan base-package="com.company.app"/>
+	<mybatis-spring:scan base-package="com.company.app.**.mapper"/>
 
 </beans>
