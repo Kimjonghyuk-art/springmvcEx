@@ -12,6 +12,7 @@
 		<org.springframework-version>5.3.16</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.apache.tiles-version>3.0.8</org.apache.tiles-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -233,6 +234,20 @@
 			<artifactId>osdt_cert</artifactId>
 			<version>19.3.0.0</version>
 		</dependency>
+		
+		<!--tiles-->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>${org.apache.tiles-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>${org.apache.tiles-version}</version>
+		</dependency>
+		
+		
 	</dependencies>
     <build>
         <plugins>
