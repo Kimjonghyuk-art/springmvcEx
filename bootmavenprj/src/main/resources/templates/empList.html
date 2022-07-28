@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <style>
+      .gray {
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+  
+  
+  
+  
+  <form>
+   <div class="mb-3">
+          <label for="jobId" class="form-label">직무</label>
+          <select class="form-control" id="jobId" name="jobId"> 
+          	<option th:each="job : ${jobs}" th:text=${job.jobId} th:value="${job.jobId}">선택</option>
+          </select>
+            <label for="departmentId" class="form-label">부서</label>
+          <select class="form-control" id="departmentId" name="departmentId">
+            <option th:each="dept : ${depts}" th:text="${dept.departmentName}" th:value="${dept.departmentId}" >선택</option> 
+          </select>
+        </div>
+  </form>
+  
+  <a th:href="@{/insertemp}">게시글 등록</a>
+
+    <table>
+      <tr>
+        <th>index</th>
+        <th>employee_id</th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>hire_date</th>
+        <th>salary</th>
+        <th>commission_pct</th>
+        <th></th>
+      </tr>
+     
+      <tr
+        th:each="emp : ${empList}"
+        class="gray"
+        th:class="${empStat.odd}?'gray':''"
+      >
+        <td th:text="${empStat.count}"></td>
+       <td><a th:href="@{empupdate(employeeId=${emp.employeeId})}">[[${emp.employeeId}]]</a></td>
+        <td th:text="${emp.firstName}">scott</td>
+        <td th:text="${emp.lastName}">King</td>
+        <td th:text="${#dates.format(emp.hireDate, 'yyyy-MM-dd')}">
+          2020-10-01
+        </td>
+        <td th:text="${#numbers.formatInteger(emp.salary, 3, 'COMMA')}"></td>
+        <td>
+        <span th:text="${emp.commissionPct}" th:if="${emp.commissionPct != null}"></span>
+        <span th:unless="${emp.commissionPct != null}">0</span>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
