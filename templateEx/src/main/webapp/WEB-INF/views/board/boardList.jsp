@@ -17,35 +17,57 @@
 <script>
 	$(function() {
 		/* 	$('#myTable').DataTable(); */
+		
+		$('[name="type"]').val('${cri.type}')
+		
 		function goPage(num) {
 			searchForm.pageNum.value = num;
-			searchFrm.submit();
-			/* location.href="boardList?pageNUm="+num */
+			searchForm.submit();
+			/* location.href="boardList?pageNUm="+num */	
 		}
+		
+		//수정, 삭제 메시지 출력
+		var result1 = '${result1}';
+		var result2 = '${param.result2}'; //파라미터로 날아간 값 읽기위해 param. 사용
+		
+		if(result1 != '') {
+			const myModal = new bootstrap.Modal('#modalid',{});
+			const modal = document.getElementById("modalid");
+			$('#msg').html(result1);
+				myModal.show(myModal);
+			
+		}
+		
+		
 
 	})
 </script>
 
 <body>
 	<h3>게시판 리스트</h3>
-	
-	<div class='row'>
+	${cri}	
+	<div class="card">
+  <div class="card-header">
+  <div class='row'>
 		<div class="col-lg-12">
 			<form name="searchForm">
-				<select name='type'>
-					<option value="">--</option>
+				<select name="type">
 					<option value="title">제목</option>
 					<option value="content">내용</option>
 					<option value="writer">작성자</option>
 				</select>
-				<input type='text' name='keyword' />
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+				<input type='text' name='keyword' value='${cri.keyword}' />
+				<input type='hidden' name='pageNum' value='1'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<button class='btn btn-default'>Search</button>
 			</form>
 		</div>
 	</div>
-	
+  
+   
+  </div>
+  <div class="card-body">
+
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -92,6 +114,30 @@
 		<button type="button" onclick="location.href='boardInsert'">게시물
 			등록</button>
 	</div>
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalid" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="msg"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

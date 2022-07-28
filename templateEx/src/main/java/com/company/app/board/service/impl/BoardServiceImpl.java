@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> getBoardList(Criteria cri) {
-
+		System.out.println("☆★☆★list servcie가 호출되었습니다.☆★☆★");
 		return mapper.getBoardList(cri	);
 	}
 

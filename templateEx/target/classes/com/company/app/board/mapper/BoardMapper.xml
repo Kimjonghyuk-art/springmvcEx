@@ -15,20 +15,21 @@
 
 	<sql id="criteria">
 
-		<if test="keyword != null AND keyword != ''">
-			and ${type} = #{keyword}
+		<if test="keyword != null and keyword != ''">
+			and ${type} LIKE  '%' || #{keyword} || '%'
 		</if>
 		
 	</sql>
 
 	<select id="getBoardList" resultType="BoardVO">
-
+ 		<![CDATA[
 		SELECT *
 		FROM (
 		SELECT /*+ INDEX_DESC(tbl_board pk_board) */ rownum rn, a.*
 		FROM tbl_board a
-	        <![CDATA[
-	        WHERE ROWNUM <= #{pageNum}*#{amount} ]]>
+	       
+	        WHERE ROWNUM <= #{pageNum}*#{amount} 
+	        ]]>
 			<include refid="criteria"></include>
 		)
 		WHERE rn > (#{pageNum}-1)*#{amount}
