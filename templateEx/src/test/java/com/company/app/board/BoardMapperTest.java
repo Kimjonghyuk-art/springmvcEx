@@ -1,5 +1,6 @@
 package com.company.app.board;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -22,21 +23,24 @@ public class BoardMapperTest {
 	
 	@Autowired BoardService service;
 	
-	@Test
+	//@Test
 	public void select() {
 		service.getBoardList(new Criteria());
 	}
 	
 	
-	//@Test
+	@Test
 	public void insert() {
-		BoardVO vo = new BoardVO();
-		vo.setTitle("로그제목");
-		vo.setContent("로그콘텐츠");
-		vo.setWriter("로그유저");
-		service.boardInsert(vo);
-		log.info("생성된 게시글 번호 : " + vo.getBno());
-		
+		for(int i = 0; i < 100; i++) {
+			BoardVO vo = new BoardVO();
+			vo.setTitle("로그제목");
+			vo.setContent("로그콘텐츠");
+			vo.setWriter("로그유저");
+			service.boardInsert(vo);
+			log.info("생성된 게시글 번호 : " + vo.getBno());
+	
+		}
+				
 	}
 	
 }

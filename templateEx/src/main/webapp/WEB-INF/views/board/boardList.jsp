@@ -18,12 +18,13 @@
 	$(function() {
 		/* 	$('#myTable').DataTable(); */
 		
-		$('[name="type"]').val('${cri.type}')
+		//$('[name="type"]').val('${cri.type}')
 		
 		function goPage(num) {
+			/* $('#type').val('${cri.type}').prop("selected", true); */
 			searchForm.pageNum.value = num;
 			searchForm.submit();
-			/* location.href="boardList?pageNUm="+num */	
+			/* location.href="boardList?pageNum="+num */	
 		}
 		
 		//수정, 삭제 메시지 출력
@@ -37,6 +38,19 @@
 				myModal.show(myModal);
 			
 		}
+		
+		var pagination = document.querySelector(".pagination");
+		  pagination.onclick = function() {
+		    event.preventDefault(); // 고유이벤트 속성 중지
+		    if(event.target.tagName != 'A') return;
+
+		   // console.log(document.pageForm.pagenum.value);
+		    console.log(event.target.dataset.pagenum);
+		    // 사용자가 클릭한 페이지 번호를 form에 넣고 서브밋을 보냅니다.
+		   console.log(document.getElementById("pageNum").value)
+		    pageForm.pageNum.value = event.target.dataset.pagenum;
+		    document.pageForm.submit(); // 서브밋
+		  }
 		
 		
 
@@ -52,11 +66,11 @@
 		<div class="col-lg-12">
 			<form name="searchForm">
 				<select name="type">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-					<option value="writer">작성자</option>
+					<option value="title" ${pageMaker.cri.type eq 'title' ? 'selected' : ''}>제목</option>
+					<option value="content" ${pageMaker.cri.type eq 'content' ? 'selected' : ''}>내용</option>
+					<option value="writer" ${pageMaker.cri.type eq 'writer' ? 'selected' : ''}>작성자</option>
 				</select>
-				<input type='text' name='keyword' value='${cri.keyword}' />
+				<input type='text' name='keyword' value='${pageMaker.cri.keyword}' />
 				<input type='hidden' name='pageNum' value='1'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<button class='btn btn-default'>Search</button>
@@ -88,32 +102,39 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
+<form name="pageForm">
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev}">
 				<li class="page-item">
-				<a class="page-link" href="boardList?pageNum=${pageMaker.startPage-1}">Previous</a>
+				<a class="page-link" href="#" data-pagenum="${pageMaker.startPage-1}">Previous</a>
 				</li>
 			</c:if>
 			
 			<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 				<li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
-				<a class="page-link" href="boardList?pageNum=${num}">${num}</a>
+				<a class="page-link" href="#" data-pagenum='${num}'>${num}</a>
 				</li>
 			</c:forEach>
 		
 			<c:if test="${pageMaker.next}">
 				<li class="page-item">
-				<a class="page-link" href="boardList?pageNum=${pageMaker.endPage+1}">Next</a></li>
+				<a class="page-link" href="#" data-pagenum="${pageMaker.endPage+1}">Next</a></li>
 			</c:if>
 		</ul>
 	</nav>
+	
+	
+   <input type="hidden" name="type" value="${pageMaker.cri.type}">
+   <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+	<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}">
+  <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 
 	<div id="btnContainer">
 		<button type="button" onclick="location.href='boardInsert'">게시물
 			등록</button>
 	</div>
+	</form>
 </div>
 
 </div>
